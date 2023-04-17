@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <label>Item</label>
+   <input id="in" value="0" type="text"  ></input> <br><br>
+   
+   <button id="add" onClick="handle()">+</button>
+   <h2 id="total">0</h2>
+   <button id="minus" onClick="handle()">-</button>
+   <div>hello</div>
+  
+</body>
+<script>
+ 
+ function handle(){
+    let x=parseInt(document.getElementById("in").value)
+    let e =event.target.innerText
+    console.log(e)
+    let y=parseInt(document.getElementById("total").innerText)
+    if(e=="+"){
+      if(x!==0){
+        y+=x
+        document.getElementById("in").value=0
+      }else{
+        y+=1
+      }
+     document.getElementById("total").innerText=y
+ }
+ else{
+   y=y-1
+   document.getElementById("total").innerText=y
+ }
+}
+
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+    <label>Item</label>
+    <input value="" id="input"></input> <br>
+
+    <label>Price</label>
+    <input value="" id="input2"></input>
+     
+    <button id="button" onClick="handle()">add</button>
+    <table>
+        <thead>
+            <tr>
+                <td>item name</td>
+                <td>price</td>
+            </tr>
+        </thead>
+        <tbody id="table">
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <td id="final">0</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+    <script>
+        function handle(){
+           let x=document.getElementById("input").value 
+           let y=document.getElementById("input2").value 
+           let z=document.getElementById("table").innerHTML
+           let a=parseInt(document.getElementById("final").innerHTML)
+           let arr=[]
+           z+=`<tr><td>${x}</td><td>${y}</td></tr>`
+           document.getElementById("table").innerHTML=z
+           
+           document.getElementById("input").value="" 
+           document.getElementById("input2").value="" 
+           
+           a+=parseInt(y)
+           document.getElementById("final").innerHTML=a
+           
+          
+        }
+        
+    </script>
+</html>

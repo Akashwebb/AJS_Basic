@@ -1,0 +1,248 @@
+<!-- //
+When a web page is loaded, the browser creates a Document Object Model of the page.
+The HTML DOM model is constructed as a tree of Objects:
+
+With the DOM object model, JavaScript gets all the power it needs to create dynamic HTML:
+like change all html Element,attributes , css style and add events in web page
+The HTML DOM is a standard for how to get, change, add, or delete HTML elements.
+
+--------------------------------------------------------------------------------------------------------
+
+//        ## DOM METHOD AND PROPERTIES   
+// HTML DOM methods are actions you can perform (on HTML Elements).
+// HTML DOM properties are values (of HTML Elements) that you can set or change. -->
+
+<!DOCTYPE html>
+<html>
+<body>
+<h2 id="id1">JavaScript HTML DOM</h2>
+<button id="buttonid" type="button" onclick="document.getElementById('id1').style.color = 'red'">Click Me!</button> <br><br>
+<h2>JavaScript HTML Events</h2>
+<h2 onclick=`${console.log(`rr`)}`>Click on this text!</h2>
+
+<p id="p1">I AM FIRST</p>
+<p>i am second</p>
+<p id="demo">i am third</p>
+
+
+<script>
+const element = document.getElementsByTagName("p");
+ document.getElementById("demo").innerHTML = "hey " + element[0].innerHTML;
+
+f=document.createElement("span")    // create a new html element(span) and add in same line
+y=document.getElementById("p1")
+y.append("  i am suffix")        // append add a text suffix of p1 ID
+y.prepend("i am prefix  ")       // prepend add a text prefix of p1 ID
+
+//document.createElement("div")
+z=document.getElementById("p1")
+z.after(" I AM AFTER P1 ID")      // after add text "after p1 ID"       
+z.before("I AM BEFORE P1 ID")     // before add text "before p1 ID"
+
+
+x=document.getElementById("buttonid")  //line 19 for button
+console.log(x)
+let count=0
+x.addEventListener('click',()=> {
+  count+=1                               // count number of time button got clicked on console
+  console.log(count)
+})
+
+ document.write("hhh")
+</script>
+
+</body>
+</html>
+
+<!--  
+The **innerHTML property can be used to get or change any HTML element, including <html> and <body>. 
+METHODS  ::  1. document.getElementsByTagName	        
+             2. document.getElementsByClassName	      
+             3. document.getElementsById
+             4. document.querySelectorAll
+
+PROPERTIES:  1. element.innerHTML =  new html content	            Change the inner HTML of an element (access of values)
+             2. element.attribute("src", " ") = new value	                    Change the attribute value like src for <img> tag
+             3. element.style.property = new style	                Change the style of an HTML element            
+             
+-------------------------------------------------------------------------------------------------------------            -->
+
+<!--   ## ADDING AND DELETING ELEMENTS:::
+document.createElement(element)	                  Create an HTML element
+document.removeChild(element)	                  Remove an HTML element
+document.appendChild(element)	                  Add an HTML element
+document.replaceChild(new, old)                	  Replace an HTML element
+document.write(text)	                          Write into the HTML output stream 
+
+document.getElementById(id).onclick = function(){code}	       Adding event handler code to an onclick event
+-->
+
+<!--   -----------------------------------------------------------------------------------------------------------  
+   
+  ##  FORM VALIDATION POP-UP MESSAGE -->
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validateForm() {
+  let x = document.forms.myForm.fname.value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
+</script>
+</head>
+<body>
+
+<h2>JavaScript Validation</h2>
+
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+  Name: <input type="text" name="fname">
+  <input type="submit" value="Submit">
+</form>   <br><br>
+
+ 
+<!--  ## EVENT HANDLING
+   The onmouseover and onmouseout events can be used to trigger a function when the user mouses over, 
+  or out of, an HTML element:-->
+
+<div onmouseover="mOver(this)" onmouseout="mOut(this)" 
+style="background-color:#D94A38;width:120px;height:20px;padding:40px;">
+Mouse Over Me</div>
+
+<script>
+  function mOver(obj) {
+    obj.innerHTML = "Thank You"
+  }
+  
+  function mOut(obj) {
+    obj.innerHTML = " Over Me"
+  }
+  </script>
+  
+
+</body>
+</html>
+
+<!-- ------------------------------------------------------------------------------------------------------ -->
+
+<!-- EVENT HANDLING -->
+
+<!--  ## The ONMOUSEDOWN, ONMOUSEUP and ONCLICK Events
+The onmousedown, onmouseup, and onclick events are all parts of a mouse-click. 
+First when a mouse-button is clicked, the onmousedown event is triggered, then, when the mouse-button is released, 
+the onmouseup event is triggered, finally, when the mouse-click is completed, the onclick event is triggered. -->
+
+<!-- ## USING ADD-EVENT-LISTENER TO CREATE EVENT 
+<script>
+document.getElementById("myBtn").addEventListener("click", myFunction);
+
+function myFunction() {
+  alert ("Hello World!");
+}
+</script>
+
+  The addEventListener() method attaches an event handler to an element without overwriting existing event handlers.
+You can add many event handlers to one element.   -->
+
+<!-- <!DOCTYPE html>
+<html>
+  <head> 
+    <style>
+#box{
+  width:100px;
+  height:100px;
+  border:2px solid black;
+  background-color:red;
+}
+</style>  
+</head>
+<body>
+  <div id="box"></div>
+<script>
+const box = document.getElementById("box");
+box.addEventListener("click",()=>{
+  if(box.style.backgroundColor == "green"){
+    box.style.backgroundColor = "red"
+  }else{
+    box.style.backgroundColor = "green"
+  }
+}) </script> 
+</body>
+</html> -->
+
+<!-- -------------------------------------------------------------------------------------------------------
+
+### EVENT CAPTURING  AND EVENT BUBBLING -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      border:2px solid black;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+       <div id="grandpa">
+        <p> i am grandpa .......!!</p>
+        <div id="parent">
+            <p>i am parent..........!!</p>
+          <div id="child">
+               <p> i am child........!! </p>
+          </div>
+        </div>
+       </div>
+
+       <script>
+        document.getElementById("child").addEventListener("click",function(){
+          console.log("i am child")
+          //event.stopPropagation()
+        },false)  // make all *true  for event.stopPropagation
+        document.getElementById("parent").addEventListener("click",function(){
+          console.log("i am parent")
+        },true)
+        document.getElementById("grandpa").addEventListener("click",function(){
+          console.log("i am grandpa")
+        },false)
+       </script>
+</body>
+</html>
+
+<!-- ON click in CHILD DIV , all the PARENT and GRANDPA DIV event also get trigered 
+
+  The standard DOM Events describes 3 phases of event propagation:
+1. Capturing phase –-    the event goes down to the element.
+2. Target phase –-     the event reached the target element.
+3. Bubbling phase =–   the event bubbles up from the element. 
+
+ BUBBLING :: When an event happens on an element, it first runs the handlers on it, then on its parent, 
+  then all the way up on other ancestors. 
+    CAPTURING :: Its just opposite of bubbling ,  we have control on capturing ,  but not on bubbling
+
+If you click on <p>, then the sequence is:
+1. HTML → BODY → FORM → DIV -> P(target event) ----  ( CAPTURING PHASE , the first listener):
+2. P → DIV → FORM → BODY → HTML  ----  ( BUBBLING PHASE , the second listener).
+
+*** The event.stopPropagation() during the capturing also prevents the bubbling
+
+-------------------------------------------------------------------------------------------------------------- -->
+
+<!-- // When we try to access something (method) on arr, 
+//JS first checks if that is present on arr
+// If not, goes down the prototype chain to find it on Array
+//If not found there as well, goes down to Array's prototype i.e Object
+//If not found there as well, goes down to Object's prototype i.e null
+// It doesnot find any and returns back
+
+// If you want to add a method that should be accessible to all instances of array, add it to the prototype of it
+
+arr.__proto__.hi = function() {console.log("Hi there")}; -->
+
